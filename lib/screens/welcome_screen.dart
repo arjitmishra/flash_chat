@@ -20,7 +20,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateM
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(
+    controller  = AnimationController(
       duration: Duration(
         seconds: 1,
       ),

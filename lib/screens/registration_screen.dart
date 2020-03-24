@@ -1,11 +1,11 @@
 import 'package:flaschat/components/rounded_button.dart';
 import 'package:flaschat/constants.dart';
 import 'package:flaschat/screens/chat_screen.dart';
+import 'package:flaschat/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class RegistrationScreen extends StatefulWidget {
-
   static const String id = "registration_screen";
 
   @override
@@ -13,10 +13,9 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-
-  final _auth = FirebaseAuth.instance;
-  String email;
-  String password;
+  final AuthService _auth = AuthService();
+  String email = '';
+  String password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +42,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  email = value;
-                  print(value);
+                  setState(() {
+                    email = value;
+                  });
                 },
                 decoration: kTextFieldEmail,
               ),
@@ -55,8 +55,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 obscureText: true,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  password = value;
-                  print(value);
+                  setState(() {
+                    password = value;
+                  });
                 },
                 decoration: kTextFieldPassword,
               ),
@@ -66,13 +67,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               RoundedButton(
                 title: 'Register',
                 color: Colors.lightBlueAccent,
-                onPressed: () {
-                  print(email);
-                  print(password);
-//                Navigator.pushNamed(
-//                  context,
-//                  ChatScreen.id,
-//                );
+                onPressed: () async {
+                  try {
+                    final newUser = await _auth.registerWithEmailAndPassword(email, password);
+                    if (newUser != null) {
+                      Navigator.pushNamed(
+                        context,
+                        ChatScreen.id,
+                      );
+                    }
+                  } catch (e) {
+                    print(e);
+                  }
                 },
               ),
             ],
