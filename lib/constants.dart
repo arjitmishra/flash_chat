@@ -38,7 +38,7 @@ const kTextFieldEmail = InputDecoration(
 );
 
 const kTextFieldPassword = InputDecoration(
-  hintText: 'Enter your password.',
+  hintText: 'Enter your password',
   contentPadding:
   EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
   border: OutlineInputBorder(

@@ -16,7 +16,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateM
 
   AnimationController controller;
   Animation animation;
-//  Animation animation1;
 
   @override
   void initState() {
@@ -31,6 +30,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateM
       parent: controller,
       curve: Curves.decelerate,
     );
+
+
+//      Animation animation1;
 //    animation1 = ColorTween(
 //      begin: Colors.grey,
 //      end: Colors.transparent,

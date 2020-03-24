@@ -12,55 +12,67 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  String email;
+  String password;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 //      backgroundColor: Colors.white,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Hero(
-              tag: "logo",
-              child: Container(
-                height: 200.0,
-                child: Image.asset('images/logo.png'),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(left: 24.0, top: 70.0, right: 24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Hero(
+                tag: "logo",
+                child: Container(
+                  height: 200.0,
+                  child: Image.asset('images/logo.png'),
+                ),
               ),
-            ),
-            SizedBox(
-              height: 48.0,
-            ),
-            TextField(
-              onChanged: (value) {
-                //Do something with the user input.
-              },
-              decoration: kTextFieldEmail,
-            ),
-            SizedBox(
-              height: 8.0,
-            ),
-            TextField(
-              onChanged: (value) {
-                //Do something with the user input.
-              },
-              decoration: kTextFieldPassword,
-            ),
-            SizedBox(
-              height: 24.0,
-            ),
-            RoundedButton(
-              title: 'Log In',
-              color: Colors.lightBlueAccent,
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  ChatScreen.id,
-                );
-              },
-            ),
-          ],
+              SizedBox(
+                height: 48.0,
+              ),
+              TextField(
+                keyboardType: TextInputType.emailAddress,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  email = value;
+                  print(value);
+                },
+                decoration: kTextFieldEmail,
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
+              TextField(
+                obscureText: true,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  password = value;
+                  print(value);
+                },
+                decoration: kTextFieldPassword,
+              ),
+              SizedBox(
+                height: 24.0,
+              ),
+              RoundedButton(
+                title: 'Log In',
+                color: Colors.lightBlueAccent,
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    ChatScreen.id,
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
