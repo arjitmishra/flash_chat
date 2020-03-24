@@ -12,7 +12,7 @@ class FlashChat extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Flop Chat",
+      title: "Dart Chat",
       theme: ThemeData.dark(),
 //            .copyWith(
 //    textTheme: TextTheme(
