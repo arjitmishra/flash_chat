@@ -41,7 +41,7 @@ class _ChatScreenState extends State<ChatScreen> {
               icon: Icon(Icons.close),
               onPressed: () async {
                 await _auth.signOut();
-                Navigator.pop(context);
+                Navigator.pop(context, );
               }),
         ],
         // ⚡
