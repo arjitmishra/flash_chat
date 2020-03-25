@@ -45,110 +45,110 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.only(left: 24.0, top: 70.0, right: 24.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Hero(
+        child: Padding(
+          padding: EdgeInsets.only(left: 24.0, top: 70.0, right: 24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Flexible(
+                child: Hero(
                   tag: "logo",
                   child: Container(
                     height: 200.0,
                     child: Image.asset('images/logo.png'),
                   ),
                 ),
-                SizedBox(
-                  height: 48.0,
-                ),
-                TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    setState(() {
-                      email = value;
-                      print(value);
-                    });
-                  },
-                  decoration: kTextFieldEmail,
-                ),
-                SizedBox(
-                  height: 8.0,
-                ),
-                TextField(
-                  obscureText: true,
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    setState(() {
-                      password = value;
-                      print(value);
-                    });
-                  },
-                  decoration: kTextFieldPassword,
-                ),
-                SizedBox(
-                  height: 24.0,
-                ),
-                RoundedButton(
-                  title: 'Log In',
-                  color: Colors.lightBlueAccent,
-                  onPressed: () async {
-                    setState(() {
-                      showSpinner = true;
-                    });
-                    try {
-                      final user =
-                          await _auth.signWithEmailAndPassword(email, password);
-                      if (user != null) {
-                        Navigator.pushNamed(
-                          context,
-                          ChatScreen.id,
-                        );
-                      }
-                      setState(() {
-                        showSpinner = false;
-                      });
-                    } catch (e) {
-                      print(e);
+              ),
+              SizedBox(
+                height: 48.0,
+              ),
+              TextField(
+                keyboardType: TextInputType.emailAddress,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  setState(() {
+                    email = value;
+                    print(value);
+                  });
+                },
+                decoration: kTextFieldEmail,
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
+              TextField(
+                obscureText: true,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  setState(() {
+                    password = value;
+                    print(value);
+                  });
+                },
+                decoration: kTextFieldPassword,
+              ),
+              SizedBox(
+                height: 24.0,
+              ),
+              RoundedButton(
+                title: 'Log In',
+                color: Colors.lightBlueAccent,
+                onPressed: () async {
+                  setState(() {
+                    showSpinner = true;
+                  });
+                  try {
+                    final user =
+                        await _auth.signWithEmailAndPassword(email, password);
+                    if (user != null) {
+                      Navigator.pushNamed(
+                        context,
+                        ChatScreen.id,
+                      );
                     }
-                  },
-                ),
-                SizedBox(
-                  height: 5.0,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 12.0,
+                    setState(() {
+                      showSpinner = false;
+                    });
+                  } catch (e) {
+                    print(e);
+                  }
+                },
+              ),
+              SizedBox(
+                height: 5.0,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 12.0,
+                      ),
+                      GestureDetector(
+                        onTap: _radio,
+                        child: radioButton(_isSelected),
+                      ),
+                      SizedBox(
+                        width: 8.0,
+                      ),
+                      Text("Remember me",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: "Poppins-Medium",
+                          color: Colors.white70,
                         ),
-                        GestureDetector(
-                          onTap: _radio,
-                          child: radioButton(_isSelected),
-                        ),
-                        SizedBox(
-                          width: 8.0,
-                        ),
-                        Text("Remember me",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontFamily: "Poppins-Medium",
-                            color: Colors.white70,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
