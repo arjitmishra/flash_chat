@@ -1,4 +1,4 @@
-# flaschat
+# Group Chat
 
 A new Flutter application.
 
