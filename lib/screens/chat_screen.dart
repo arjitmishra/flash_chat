@@ -20,11 +20,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final _auth = FirebaseAuth.instance;
   String messageText;
 
-  @override
-  void initState() {
-    super.initState();
-    getCurrentUser();
-  }
+  
 
   void getCurrentUser() async {
     try {
@@ -46,6 +42,13 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 
+
+@override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,9 +67,9 @@ class _ChatScreenState extends State<ChatScreen> {
         title: Center(// ⚡
             child: Text('Dart Chat'),
         ),
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: Colors.BlueAccent,
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.black87,
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -123,11 +126,11 @@ class MessagesStream extends StatelessWidget {
         if (!snapshot.hasData) {
           return Center(
             child: CircularProgressIndicator(
-              backgroundColor: Colors.lightBlueAccent,
+              backgroundColor: Colors.blueAccent,
             ),
           );
         }
-        final messages = snapshot.data.documents.reversed;
+        
         for (var message in messages) {
           final messageText = message.data['text'];
           final messageSender = message.data['sender'];
@@ -176,8 +179,8 @@ class MessageBubble extends StatelessWidget {
           ),
           SizedBox(height: 2.0),
           Material(
-            borderRadius: isMe ? BorderRadius.only(bottomLeft: Radius.circular(30.0), topLeft: Radius.circular(30.0), bottomRight: Radius.circular(30.0), topRight: Radius.circular(5.0)) :
-            BorderRadius.only(bottomLeft: Radius.circular(30.0), topLeft: Radius.circular(5.0), bottomRight: Radius.circular(30.0), topRight: Radius.circular(30.0)),
+            borderRadius: isMe ? BorderRadius.only(bottomLeft: Radius.circular(20.0), topLeft: Radius.circular(20.0), bottomRight: Radius.circular(20.0), topRight: Radius.circular(5.0)) :
+            BorderRadius.only(bottomLeft: Radius.circular(20.0), topLeft: Radius.circular(5.0), bottomRight: Radius.circular(20.0), topRight: Radius.circular(20.0)),
             elevation: 5.0,
             color: isMe ? Colors.lightBlueAccent : Colors.white,
             child: Padding(
